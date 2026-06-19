@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Page not found — redirecting…</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4972518342819184" crossorigin="anonymous"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #333;
+      background: #f5f7fa;
+    }
+    h1 { font-size: 3rem; margin-bottom: 1rem; color: #0066ff; }
+    p { font-size: 1.1rem; color: #666; margin-bottom: 1rem; }
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      background: #0066ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn:hover { background: #0052cc; }
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #e0e0e0;
+      border-top: 3px solid #0066ff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <h1>Page not found</h1>
+  <p>Redirecting you to the homepage…</p>
+  <p id="status" style="font-size: 0.85rem; color: #999;"></p>
+  <a href="/" class="btn" id="homeLink">Go to Homepage</a>
+  <script>
+    (function(){
+      var status = document.getElementById('status');
+      var homeLink = document.getElementById('homeLink');
+
+      try {
+        var currentUrl = window.location.href;
+        status.textContent = 'URL: ' + currentUrl;
+
+        // On GitHub Pages, the site may be at a subpath (e.g., /repo-name/)
+        // We need to correctly determine the root URL
+
+        // Strategy 1: Try to redirect to just '/' which works on custom domains
+        // Strategy 2: For GitHub Pages with a repo name, find the base path
+
+        var pathname = window.location.pathname;
+        var parts = pathname.split('/').filter(Boolean);
+
+        // Possible root paths to try:
+        var possibleRoots = [];
+
+        // Always try the plain root (works for custom domains and some GH Pages setups)
+        possibleRoots.push(window.location.origin + '/');
+
+        // If there are path segments, the first one might be the repo name (GitHub Pages subpath)
+        if (parts.length > 0) {
+          // Try /repo-name/
+          possibleRoots.push(window.location.origin + '/' + parts[0] + '/');
+        }
+
+        // Update the link with the first option
+        homeLink.href = possibleRoots[1] || possibleRoots[0];
+
+        // Try each possible root until one works via redirect
+        // Use a timeout-based approach: try the most likely root first,
+        // and if the user is still on this page after a delay, offer manual options
+
+        // The most specific root (with repo name if applicable) is tried first
+        var redirectUrl = possibleRoots.length > 1 ? possibleRoots[1] : possibleRoots[0];
+
+        status.textContent = 'Redirecting to: ' + redirectUrl;
+
+        // Redirect after a brief delay
+        setTimeout(function() {
+          window.location.href = redirectUrl;
+        }, 2000);
+
+        // Fallback: if redirect didn't work after 5 seconds, show the manual link with all options
+        setTimeout(function() {
+          status.innerHTML = 'Redirect failed. Click the link above or try one of these:<br>' +
+            possibleRoots.map(function(r) {
+              return '<a href="' + r + '" style="color:#0066ff;">' + r + '</a>';
+            }).join('<br>');
+        }, 5000);
+
+      } catch(e) {
+        status.textContent = 'Error: ' + e.message;
+        // Simple fallback
+        setTimeout(function() { window.location.href = '/'; }, 3000);
+      }
+    })();
+  </script>
+</body>
+</html>

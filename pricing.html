@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Pricing - STYLES TV</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4972518342819184" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="location.href='index.html'" style="cursor: pointer;">
+                <i class="fas fa-square"></i>
+                <span>STYLES<span class="tv-text">TV</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#about">ABOUT</a>
+                <a href="pricing.html">SERVICES</a>
+                <a href="index.html#portfolio">PORTFOLIO</a>
+                <a href="index.html#contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Page Header -->
+    <section class="pricing-header">
+        <h1>Our <span class="blue-text">Website Services</span></h1>
+        <p>Choose the perfect package for your business needs</p>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing-section">
+        <div class="pricing-container">
+            <!-- Low Quality Package -->
+            <div class="pricing-card">
+                <div class="card-badge">STARTER</div>
+                <div class="card-image low-quality-img">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3>Low Quality</h3>
+                <p class="card-subtitle">Small Business</p>
+                <div class="price">
+                    <span class="amount">$50</span>
+                    <span class="duration">/one time</span>
+                </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Basic Website Template</li>
+                    <li><i class="fas fa-check"></i> Up to 5 Pages</li>
+                    <li><i class="fas fa-check"></i> Mobile Responsive</li>
+                    <li><i class="fas fa-check"></i> Basic Contact Form</li>
+                    <li><i class="fas fa-check"></i> Social Media Links</li>
+                </ul>
+                <button class="add-to-cart-btn" onclick="addToCart('Low Quality Website', 50)">
+                    <i class="fas fa-shopping-cart"></i> ADD TO CART
+                </button>
+            </div>
+
+            <!-- Medium Quality Package -->
+            <div class="pricing-card featured">
+                <div class="card-badge featured-badge">POPULAR</div>
+                <div class="card-image medium-quality-img">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3>Medium Quality</h3>
+                <p class="card-subtitle">Professional Website</p>
+                <div class="price">
+                    <span class="amount">$100</span>
+                    <span class="duration">/one time</span>
+                </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Custom Design</li>
+                    <li><i class="fas fa-check"></i> Up to 10 Pages</li>
+                    <li><i class="fas fa-check"></i> SEO Optimized</li>
+                    <li><i class="fas fa-check"></i> Advanced Contact Forms</li>
+                    <li><i class="fas fa-check"></i> Blog Section</li>
+                    <li><i class="fas fa-check"></i> Social Integration</li>
+                </ul>
+                <button class="add-to-cart-btn featured-btn" onclick="addToCart('Medium Quality Website', 100)">
+                    <i class="fas fa-shopping-cart"></i> ADD TO CART
+                </button>
+            </div>
+
+            <!-- Best Quality Package -->
+            <div class="pricing-card">
+                <div class="card-badge">PREMIUM</div>
+                <div class="card-image best-quality-img">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3>Best Quality</h3>
+                <p class="card-subtitle">Enterprise Solution</p>
+                <div class="price">
+                    <span class="amount">$150</span>
+                    <span class="duration">/one time</span>
+                </div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Fully Custom Design</li>
+                    <li><i class="fas fa-check"></i> Unlimited Pages</li>
+                    <li><i class="fas fa-check"></i> Advanced SEO</li>
+                    <li><i class="fas fa-check"></i> E-commerce Ready</li>
+                    <li><i class="fas fa-check"></i> Premium Support</li>
+                    <li><i class="fas fa-check"></i> Analytics & Insights</li>
+                </ul>
+                <button class="add-to-cart-btn" onclick="addToCart('Best Quality Website', 150)">
+                    <i class="fas fa-shopping-cart"></i> ADD TO CART
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section" id="cartSection" style="display: none;">
+        <div class="cart-container">
+            <h2>Your Shopping Cart</h2>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$0.00</span>
+                </div>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> PROCEED TO WHATSAPP
+            </button>
+            <button class="continue-shopping-btn" onclick="continueShopping()">
+                Continue Shopping
+            </button>
+        </div>
+    </section>
+
+    <!-- Empty Cart Message -->
+    <section class="empty-cart" id="emptyCart">
+        <div class="empty-cart-content">
+            <i class="fas fa-shopping-cart"></i>
+            <h2>Your cart is empty</h2>
+            <p>Add a website package to get started!</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <h2>Why Choose <span class="blue-text">STYLES TV</span>?</h2>
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Fast Delivery</h3>
+                <p>We deliver your website on time, every time</p>
+            </div>
+            <div class="reason-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Quality Assured</h3>
+                <p>100% satisfaction guaranteed on all projects</p>
+            </div>
+            <div class="reason-card">
+                <i class="fas fa-headset"></i>
+                <h3>Dedicated Support</h3>
+                <p>Get expert support whenever you need it</p>
+            </div>
+            <div class="reason-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Growth Focused</h3>
+                <p>Websites designed to grow your business</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Contact -->
+    <section class="footer-contact">
+        <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <p><i class="fas fa-phone"></i> WhatsApp: 0781656747</p>
+            <p><i class="fab fa-whatsapp"></i> WhatsApp: +263712537788</p>
+            <p><i class="fas fa-map-marker-alt"></i> Masvingo, Zimbabwe</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

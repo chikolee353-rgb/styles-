@@ -1,0 +1,4 @@
+- [x] Add Google AdSense script to index.html
+- [x] Add Google AdSense script to pricing.html
+- [x] Add Google AdSense script to 404.html
+- [ ] Push changes to GitHub (if needed)
